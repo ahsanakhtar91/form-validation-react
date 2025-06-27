@@ -2,9 +2,7 @@
 
 _Description here_
 
-⚛️ **Live Demo**: 
-
-📹 **Loom Walk‑through**: 
+⚛️ **Live Demo**: https://form-validation-react-demo.netlify.app
 
 ---
 
