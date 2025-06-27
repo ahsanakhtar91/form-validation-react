@@ -24,7 +24,7 @@ _Features here_
 ### Clone & Run
 
 ```bash
-git clone https://github.com/ahsanakhtar91/financing-request-creator.git
+git clone git@github.com:ahsanakhtar91/financing-request-creator.git
 cd financing-request-creator
 yarn install
 yarn start
