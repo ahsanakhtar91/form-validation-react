@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./FinancingRequestForm.css";
 import React from "react";
 import { Input, Button } from "antd";
 import { useForm, Controller } from "react-hook-form";
@@ -7,6 +7,7 @@ import {
   financingRequestSchema,
   FinancingRequestFormData,
 } from "../../schemas/financingRequestSchema";
+import { FormInput } from "../FormInput/FormInput";
 
 const FinancingRequestForm: React.FC = () => {
   const {
@@ -31,30 +32,18 @@ const FinancingRequestForm: React.FC = () => {
   return (
     <div className="form">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Full Name</label>
-          <Controller
-            name="fullName"
-            control={control}
-            render={({ field }) => (
-              <div>
-                <Input
-                  status={errors.fullName ? "error" : ""}
-                  {...field}
-                  className="input"
-                />
-
-                {errors.fullName && <span>{errors.fullName.message}</span>}
-              </div>
-            )}
-          />
-        </div>
+        <FormInput
+          name="fullName"
+          label="Full Name"
+          type="text"
+          control={control}
+          errors={errors}
+        />
         <Button
           type="primary"
           htmlType="submit"
           loading={isSubmitting}
           size="large"
-          style={{ width: "100%" }}
         >
           Submit Request
         </Button>
