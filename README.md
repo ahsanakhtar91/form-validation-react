@@ -1,4 +1,4 @@
-# Financing Request Creator (React App)
+# Form Validation (React App)
 
 _Description here_
 
@@ -24,8 +24,8 @@ _Features here_
 ### Clone & Run
 
 ```bash
-git clone git@github.com:ahsanakhtar91/financing-request-creator.git
-cd financing-request-creator
+git clone git@github.com:ahsanakhtar91/form-validation-react.git
+cd form-validation-react
 yarn install
 yarn start
 Access the app at http://localhost:3000

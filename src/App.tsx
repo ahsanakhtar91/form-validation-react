@@ -1,4 +1,5 @@
 import "./App.css";
+import FinancingRequestForm from "./components/FinancingRequestForm";
 
 export default function App() {
   return (
@@ -6,6 +7,7 @@ export default function App() {
       <div className="header">
         <div className="app-name">Create Financing Request</div>
       </div>
+      <FinancingRequestForm />
     </div>
   );
 }
