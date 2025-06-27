@@ -1,7 +1,7 @@
 import "./FinancingRequestForm.css";
 import React from "react";
-import { Input, Button } from "antd";
-import { useForm, Controller } from "react-hook-form";
+import { Button } from "antd";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   financingRequestSchema,
@@ -18,34 +18,37 @@ const FinancingRequestForm: React.FC = () => {
   } = useForm<FinancingRequestFormData>({
     resolver: yupResolver(financingRequestSchema),
     defaultValues: {
-      fullName: "",
+      firstName: "",
+      lastName: "",
     },
   });
 
   const onSubmit = (data: FinancingRequestFormData) => {
-    console.log("Form submitted:", data);
+    console.log("Form Submitted:", data);
     // Handle form submission here
-    alert("Form submitted successfully!");
     reset();
   };
 
   return (
-    <div className="form">
+    <div className="form-container">
+      <h2>Financing Request Form</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
-          name="fullName"
-          label="Full Name"
+          name="firstName"
+          label="First Name"
           type="text"
           control={control}
           errors={errors}
         />
-        <Button
-          type="primary"
-          htmlType="submit"
-          loading={isSubmitting}
-          size="large"
-        >
-          Submit Request
+        <FormInput
+          name="lastName"
+          label="Last Name"
+          type="text"
+          control={control}
+          errors={errors}
+        />
+        <Button htmlType="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Submit Request"}
         </Button>
       </form>
     </div>
