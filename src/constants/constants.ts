@@ -1,3 +1,6 @@
+export const API_ENDPOINT =
+  "http://test-noema-api.azurewebsites.net/api/requests";
+
 export const inputFieldLabels = {
   firstName: "First Name",
   lastName: "Last Name",
