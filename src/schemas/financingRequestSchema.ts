@@ -24,6 +24,20 @@ export const financingRequestSchema = yup.object({
       ({ label }) => `${label} can only contain letters and spaces`
     ),
   originCountry: yup.string().label(inputFieldLabels.originCountry).required(),
+  projectCode: yup
+    .string()
+    .label(inputFieldLabels.projectCode)
+    .required()
+    .matches(
+      /^[A-Z]{4}-[1-9]{4}$/,
+      ({ label }) => `Invalid format of ${label} (should be like ABCD-1234)`
+    ),
+  description: yup.string().max(150, "Maximum 150 characters allowed"),
+  amount: yup
+    .number()
+    .label(inputFieldLabels.amount)
+    .required()
+    .positive(({ label }) => `${label} must be positive`),
   currency: yup
     .string()
     .label(inputFieldLabels.currency)

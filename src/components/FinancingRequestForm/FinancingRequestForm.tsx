@@ -30,6 +30,9 @@ const FinancingRequestForm: React.FC = () => {
       firstName: undefined,
       lastName: undefined,
       originCountry: undefined,
+      projectCode: undefined,
+      description: undefined,
+      amount: undefined,
       currency: undefined,
       validityStartDate: undefined,
       validityEndDate: undefined,
@@ -84,6 +87,25 @@ const FinancingRequestForm: React.FC = () => {
             label: country,
             value: country,
           }))}
+          {...commonProps}
+        />
+        <FormInput
+          name="projectCode"
+          label={inputFieldLabels["projectCode"]}
+          type="text"
+          placeholder="e.g., ABCD-1234"
+          {...commonProps}
+        />
+        <FormInput
+          name="description"
+          label={inputFieldLabels["description"]}
+          type="textarea"
+          {...commonProps}
+        />
+        <FormInput
+          name="amount"
+          label={inputFieldLabels["amount"]}
+          type="number"
           {...commonProps}
         />
         <FormDropdown

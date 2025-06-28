@@ -31,7 +31,7 @@ export const FormDropdown = ({
             <div className="form-input-label">{label}</div>
             <Select
               {...field}
-              placeholder={placeholder ?? label}
+              placeholder={placeholder ?? `Select ${label}`}
               status={errors[name] ? "error" : ""}
               className="form-input"
               options={options}

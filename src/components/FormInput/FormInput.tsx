@@ -1,12 +1,12 @@
 import "./FormInput.css";
 import { FinancingRequestFormData } from "../../schemas/financingRequestSchema";
 import { Control, Controller, FieldErrors } from "react-hook-form";
-import { Input, DatePicker } from "antd";
+import { Input, DatePicker, InputNumber } from "antd";
 
 type FormInputProps = {
   name: keyof FinancingRequestFormData;
   label: string;
-  type: "text" | "date";
+  type: "text" | "date" | "number" | "textarea";
   placeholder?: string;
   control: Control<FinancingRequestFormData>;
   errors: FieldErrors<FinancingRequestFormData>;
@@ -32,8 +32,33 @@ export const FormInput = ({
               <DatePicker
                 {...field}
                 status={errors[name] ? "error" : ""}
-                placeholder={placeholder ?? label}
+                placeholder={placeholder ?? `Pick ${label}`}
                 className="form-input"
+                allowClear
+              />
+            ) : type === "number" ? (
+              <InputNumber
+                {...field}
+                status={errors[name] ? "error" : ""}
+                placeholder={placeholder ?? `Enter ${label}`}
+                className="form-input"
+                value={field.value as number}
+                min={0}
+                step={1}
+                precision={2}
+                formatter={(value) =>
+                  `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={(value) => Number(value?.replace(/\$\s?|(,*)/g, ""))}
+              />
+            ) : type === "textarea" ? (
+              <Input.TextArea
+                {...field}
+                status={errors[name] ? "error" : ""}
+                placeholder={placeholder ?? `Enter ${label}`}
+                className="form-input"
+                value={field.value as string}
+                rows={3}
                 allowClear
               />
             ) : (
@@ -41,7 +66,7 @@ export const FormInput = ({
                 {...field}
                 type={type}
                 status={errors[name] ? "error" : ""}
-                placeholder={placeholder ?? label}
+                placeholder={placeholder ?? `Enter ${label}`}
                 className="form-input"
                 value={field.value as string}
                 allowClear
