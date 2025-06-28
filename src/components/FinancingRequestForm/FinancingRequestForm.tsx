@@ -40,10 +40,14 @@ const FinancingRequestForm: React.FC = () => {
   });
 
   const onSubmit = useCallback(
-    (data: FinancingRequestFormData) => {
-      console.log("Form Submitted:", data);
-      // Handle form submission here
-      reset();
+    async (data: FinancingRequestFormData) => {
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      if (response.status === 200 || response.status === 201) {
+        reset();
+      }
     },
     [reset]
   );
