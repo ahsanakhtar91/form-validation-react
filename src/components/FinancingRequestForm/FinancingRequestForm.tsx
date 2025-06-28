@@ -1,5 +1,5 @@
 import "./FinancingRequestForm.css";
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Button } from "antd";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,6 +16,7 @@ import {
   inputFieldLabels,
   opecCountries,
 } from "../../constants/constants";
+import Success from "../Success/Success";
 
 const FinancingRequestForm: React.FC = () => {
   const {
@@ -39,6 +40,8 @@ const FinancingRequestForm: React.FC = () => {
       validityEndDate: undefined,
     },
   });
+
+  const [success, setSuccess] = useState(false);
 
   const onSubmit = useCallback(
     async (data: FinancingRequestFormData) => {
@@ -75,74 +78,78 @@ const FinancingRequestForm: React.FC = () => {
 
   return (
     <div className="form-container">
-      <h2>Financing Request Form</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          name="firstName"
-          label={inputFieldLabels["firstName"]}
-          type="text"
-          {...commonProps}
-        />
-        <FormInput
-          name="lastName"
-          label={inputFieldLabels["lastName"]}
-          type="text"
-          {...commonProps}
-        />
-        <FormDropdown
-          name="originCountry"
-          label={inputFieldLabels["originCountry"]}
-          options={allCountries.map((country) => ({
-            label: country,
-            value: country,
-          }))}
-          {...commonProps}
-        />
-        <FormInput
-          name="projectCode"
-          label={inputFieldLabels["projectCode"]}
-          type="text"
-          placeholder="e.g., ABCD-1234"
-          {...commonProps}
-        />
-        <FormInput
-          name="description"
-          label={inputFieldLabels["description"]}
-          type="textarea"
-          {...commonProps}
-        />
-        <FormInput
-          name="amount"
-          label={inputFieldLabels["amount"]}
-          type="number"
-          {...commonProps}
-        />
-        <FormDropdown
-          name="currency"
-          label={inputFieldLabels["currency"]}
-          options={currencies.map((currency) => ({
-            label: `${currency.currencyCode} (${currency.currencyName})`,
-            value: currency.currencyCode,
-          }))}
-          disabled={isoriginCountryOpec}
-          {...commonProps}
-        />
-        <FormInput
-          name="validityStartDate"
-          label={inputFieldLabels["validityStartDate"]}
-          type="date"
-          {...commonProps}
-        />
-        <FormInput
-          name="validityEndDate"
-          label={inputFieldLabels["validityEndDate"]}
-          type="date"
-          {...commonProps}
-        />
-        <Button htmlType="submit" className="button" disabled={isSubmitting}>
-          {isSubmitting ? "Submitting..." : "Submit Request"}
-        </Button>
-      </form>
+      {success ? (
+        <Success onGoBack={() => setSuccess(false)} />
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h2>Financing Request Form</h2>
+          <FormInput
+            name="firstName"
+            label={inputFieldLabels["firstName"]}
+            type="text"
+            {...commonProps}
+          />
+          <FormInput
+            name="lastName"
+            label={inputFieldLabels["lastName"]}
+            type="text"
+            {...commonProps}
+          />
+          <FormDropdown
+            name="originCountry"
+            label={inputFieldLabels["originCountry"]}
+            options={allCountries.map((country) => ({
+              label: country,
+              value: country,
+            }))}
+            {...commonProps}
+          />
+          <FormInput
+            name="projectCode"
+            label={inputFieldLabels["projectCode"]}
+            type="text"
+            placeholder="e.g., ABCD-1234"
+            {...commonProps}
+          />
+          <FormInput
+            name="description"
+            label={inputFieldLabels["description"]}
+            type="textarea"
+            {...commonProps}
+          />
+          <FormInput
+            name="amount"
+            label={inputFieldLabels["amount"]}
+            type="number"
+            {...commonProps}
+          />
+          <FormDropdown
+            name="currency"
+            label={inputFieldLabels["currency"]}
+            options={currencies.map((currency) => ({
+              label: `${currency.currencyCode} (${currency.currencyName})`,
+              value: currency.currencyCode,
+            }))}
+            disabled={isoriginCountryOpec}
+            {...commonProps}
+          />
+          <FormInput
+            name="validityStartDate"
+            label={inputFieldLabels["validityStartDate"]}
+            type="date"
+            {...commonProps}
+          />
+          <FormInput
+            name="validityEndDate"
+            label={inputFieldLabels["validityEndDate"]}
+            type="date"
+            {...commonProps}
+          />
+          <Button htmlType="submit" className="button" disabled={isSubmitting}>
+            {isSubmitting ? "Submitting..." : "Submit Request"}
+          </Button>
+        </form>
+      )}
     </div>
   );
 };
