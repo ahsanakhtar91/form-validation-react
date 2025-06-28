@@ -41,6 +41,7 @@ export const financingRequestSchema = yup.object({
   currency: yup
     .string()
     .label(inputFieldLabels.currency)
+    .required()
     .length(3, ({ label }) => `${label} must be a 3-letter code`),
   validityStartDate: yup
     .date()
