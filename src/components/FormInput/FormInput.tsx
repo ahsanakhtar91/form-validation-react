@@ -8,6 +8,7 @@ type FormInputProps = {
   label: string;
   type: "text" | "date" | "number" | "textarea";
   placeholder?: string;
+  disabled?: boolean;
   control: Control<FinancingRequestFormData>;
   errors: FieldErrors<FinancingRequestFormData>;
 };
@@ -17,6 +18,7 @@ export const FormInput = ({
   label,
   type,
   placeholder,
+  disabled,
   control,
   errors,
 }: FormInputProps) => {
@@ -33,6 +35,7 @@ export const FormInput = ({
                 {...field}
                 status={errors[name] ? "error" : ""}
                 placeholder={placeholder ?? `Pick ${label}`}
+                disabled={disabled}
                 className="form-input"
                 allowClear
               />
@@ -41,6 +44,7 @@ export const FormInput = ({
                 {...field}
                 status={errors[name] ? "error" : ""}
                 placeholder={placeholder ?? `Enter ${label}`}
+                disabled={disabled}
                 className="form-input"
                 value={field.value as number}
                 min={0}
@@ -56,6 +60,7 @@ export const FormInput = ({
                 {...field}
                 status={errors[name] ? "error" : ""}
                 placeholder={placeholder ?? `Enter ${label}`}
+                disabled={disabled}
                 className="form-input"
                 value={field.value as string}
                 rows={3}
@@ -67,6 +72,7 @@ export const FormInput = ({
                 type={type}
                 status={errors[name] ? "error" : ""}
                 placeholder={placeholder ?? `Enter ${label}`}
+                disabled={disabled}
                 className="form-input"
                 value={field.value as string}
                 allowClear

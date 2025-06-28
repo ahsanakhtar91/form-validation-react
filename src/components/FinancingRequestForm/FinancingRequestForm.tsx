@@ -50,11 +50,15 @@ const FinancingRequestForm: React.FC = () => {
 
   const originCountry = watch("originCountry");
 
+  const isoriginCountryOpec = useMemo(() => {
+    return opecCountries.includes(originCountry);
+  }, [originCountry]);
+
   useEffect(() => {
-    if (opecCountries.includes(originCountry)) {
+    if (isoriginCountryOpec) {
       setValue("currency", "USD");
     }
-  }, [originCountry, setValue]);
+  }, [isoriginCountryOpec, setValue]);
 
   const commonProps = useMemo(
     () => ({
@@ -115,6 +119,7 @@ const FinancingRequestForm: React.FC = () => {
             label: `${currency.currencyCode} (${currency.currencyName})`,
             value: currency.currencyCode,
           }))}
+          disabled={isoriginCountryOpec}
           {...commonProps}
         />
         <FormInput

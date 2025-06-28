@@ -9,6 +9,7 @@ type FormDropdownProps = {
   label: string;
   options: ComponentProps<typeof Select>["options"];
   placeholder?: string;
+  disabled?: boolean;
   control: Control<FinancingRequestFormData>;
   errors: FieldErrors<FinancingRequestFormData>;
 };
@@ -18,6 +19,7 @@ export const FormDropdown = ({
   label,
   options = [],
   placeholder,
+  disabled,
   control,
   errors,
 }: FormDropdownProps) => {
@@ -32,6 +34,7 @@ export const FormDropdown = ({
             <Select
               {...field}
               placeholder={placeholder ?? `Select ${label}`}
+              disabled={disabled}
               status={errors[name] ? "error" : ""}
               className="form-input"
               options={options}
