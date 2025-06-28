@@ -34,8 +34,8 @@ const FinancingRequestForm: React.FC = () => {
       originCountry: undefined,
       projectCode: undefined,
       description: undefined,
-      amount: undefined,
-      currency: undefined,
+      paymentAmount: undefined,
+      paymentCurrency: undefined,
       validityStartDate: undefined,
       validityEndDate: undefined,
     },
@@ -65,7 +65,7 @@ const FinancingRequestForm: React.FC = () => {
 
   useEffect(() => {
     if (isoriginCountryOpec) {
-      setValue("currency", "USD");
+      setValue("paymentCurrency", "USD");
     }
   }, [isoriginCountryOpec, setValue]);
 
@@ -121,14 +121,14 @@ const FinancingRequestForm: React.FC = () => {
             {...commonProps}
           />
           <FormInput
-            name="amount"
-            label={inputFieldLabels["amount"]}
+            name="paymentAmount"
+            label={inputFieldLabels["paymentAmount"]}
             type="number"
             {...commonProps}
           />
           <FormDropdown
-            name="currency"
-            label={inputFieldLabels["currency"]}
+            name="paymentCurrency"
+            label={inputFieldLabels["paymentCurrency"]}
             options={currencies.map((currency) => ({
               label: `${currency.currencyCode} (${currency.currencyName})`,
               value: currency.currencyCode,

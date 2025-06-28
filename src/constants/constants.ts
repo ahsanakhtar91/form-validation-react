@@ -7,8 +7,8 @@ export const inputFieldLabels = {
   originCountry: "Origin Country",
   projectCode: "Project Code",
   description: "Description",
-  amount: "Amount",
-  currency: "Currency",
+  paymentAmount: "Payment Amount",
+  paymentCurrency: "Payment Currency",
   validityStartDate: "Validity Start Date",
   validityEndDate: "Validity End Date",
 };

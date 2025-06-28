@@ -56,24 +56,24 @@ A modern and responsive form example built with **React**, **TypeScript**, and *
   - Maximum 150 characters
   - Multi-line text area
 
-- **Amount** (Required)
+- **Payment Amount** (Required)
   - Positive numbers only
   - Decimal precision up to 2 places
   - Automatic number formatting with commas
 
-- **Currency** (Required)
+- **Payment Currency** (Required)
   - 3-letter currency codes
   - Example: `USD`, `EUR`
   - 200+ currencies with full names
   - **Special Condition:** `USD` is auto-selected (cannot be changed) if `Origin Country` is an OPEC country
   - Searchable dropdown (filters currency codes as you type)
 
-- **Start Date** (Required)
+- **Validity Start Date** (Required)
   - Must be at least 15 days from current date
   - Prevents immediate start dates
-  - Date picker with calendar interface
+  - Uses `DatePicker` from `Ant Design` (with calendar interface) to pick dates
 
-- **End Date** (Required)
+- **Validity End Date** (Required)
   - Must be 1-3 years after start date
   - Cross-field validation with start date
   - Ensures reasonable project duration
