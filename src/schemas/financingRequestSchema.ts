@@ -50,11 +50,11 @@ export const financingRequestSchema = yup.object({
     .test(
       "validityStartDate",
       ({ label }) => `${label} must be at least 15 days from now`,
-      (value) => {
-        if (!value) return true;
+      (validityStartDate) => {
+        if (!validityStartDate) return true;
         const minDate = new Date();
         minDate.setDate(minDate.getDate() + 15);
-        return value >= minDate;
+        return validityStartDate >= minDate;
       }
     ),
   validityEndDate: yup
@@ -65,16 +65,16 @@ export const financingRequestSchema = yup.object({
       "validityEndDate",
       ({ label }) =>
         `${label} must be between 1 and 3 years after ${inputFieldLabels.validityEndDate}`,
-      (value, ctx) => {
+      (validityEndDate, ctx) => {
         const { validityStartDate } = ctx.parent;
-        if (!value && !validityStartDate) return true;
+        if (!validityEndDate && !validityStartDate) return true;
 
         const minEndDate = new Date(validityStartDate);
         minEndDate.setFullYear(minEndDate.getFullYear() + 1);
         const maxEndDate = new Date(validityStartDate);
         maxEndDate.setFullYear(maxEndDate.getFullYear() + 3);
 
-        return value >= minEndDate && value <= maxEndDate;
+        return validityEndDate >= minEndDate && validityEndDate <= maxEndDate;
       }
     ),
 });

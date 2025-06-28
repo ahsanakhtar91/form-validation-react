@@ -1,4 +1,4 @@
-import "./FormDropdown.css";
+import "../../components/FormInput/FormInput.css";
 import { FinancingRequestFormData } from "../../schemas/financingRequestSchema";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { Select } from "antd";

@@ -2,7 +2,6 @@
   margin: 20px auto;
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  min-width: 450px;
 }
 
 .form-container h2 {
@@ -75,8 +74,8 @@
   }
 
   .form-container .button {
-    height: 44px;
-    font-size: 15px;
+    height: 42px;
+    font-size: 14px;
     border-radius: 10px;
   }
 }
@@ -89,7 +88,7 @@
   }
 
   .form-container h2 {
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 20px;
   }
 
@@ -103,20 +102,26 @@
 /* Tablet styles */
 @media (min-width: 769px) and (max-width: 1024px) {
   .form-container {
-    max-width: 500px;
+    min-width: 350px;
     padding: 20px 28px;
+  }
+
+  .form-container .button {
+    height: 42px;
+    font-size: 14px;
+    border-radius: 8px;
   }
 }
 
 /* Large screen styles */
 @media (min-width: 1025px) {
   .form-container {
-    max-width: 700px;
+    min-width: 450px;
     padding: 28px 32px;
   }
 
   .form-container h2 {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 28px;
   }
 }
