@@ -6,7 +6,7 @@ import { Input, DatePicker, InputNumber } from "antd";
 type FormInputProps = {
   name: keyof FinancingRequestFormData;
   label: string;
-  type: "text" | "date" | "number" | "textarea";
+  type: "text" | "number" | "textarea" | "date";
   placeholder?: string;
   disabled?: boolean;
   control: Control<FinancingRequestFormData>;
