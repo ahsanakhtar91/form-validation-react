@@ -217,9 +217,9 @@ export const allCountries = [
 
 export const opecCountries = [
   "Algeria",
-  "Ecuador",
+  "Congo",
+  "Equatorial Guinea",
   "Gabon",
-  "Indonesia",
   "Iran",
   "Iraq",
   "Kuwait",
