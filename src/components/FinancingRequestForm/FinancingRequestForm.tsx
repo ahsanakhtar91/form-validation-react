@@ -51,6 +51,7 @@ const FinancingRequestForm: React.FC = () => {
       });
       if (response.status === 200 || response.status === 201) {
         reset();
+        setSuccess(true);
       }
     },
     [reset]
@@ -99,7 +100,9 @@ const FinancingRequestForm: React.FC = () => {
             name="originCountry"
             label={inputFieldLabels["originCountry"]}
             options={allCountries.map((country) => ({
-              label: country,
+              label: `${country}${
+                opecCountries.includes(country) ? " (OPEC Member Country)" : ""
+              }`,
               value: country,
             }))}
             {...commonProps}
@@ -145,7 +148,12 @@ const FinancingRequestForm: React.FC = () => {
             type="date"
             {...commonProps}
           />
-          <Button htmlType="submit" className="button" disabled={isSubmitting}>
+          <Button
+            htmlType="submit"
+            className="button"
+            loading={isSubmitting}
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Submitting..." : "Submit Request"}
           </Button>
         </form>
