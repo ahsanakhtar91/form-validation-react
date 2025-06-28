@@ -2,12 +2,11 @@ import "./FormInput.css";
 import { FinancingRequestFormData } from "../../schemas/financingRequestSchema";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { Input, DatePicker } from "antd";
-import { useMemo } from "react";
 
 type FormInputProps = {
   name: keyof FinancingRequestFormData;
   label: string;
-  type: string;
+  type: "text" | "date";
   placeholder?: string;
   control: Control<FinancingRequestFormData>;
   errors: FieldErrors<FinancingRequestFormData>;
@@ -21,8 +20,6 @@ export const FormInput = ({
   control,
   errors,
 }: FormInputProps) => {
-  const error = useMemo(() => errors[name], [errors, name]);
-
   return (
     <div>
       <Controller
@@ -37,6 +34,7 @@ export const FormInput = ({
                 status={errors[name] ? "error" : ""}
                 placeholder={placeholder ?? label}
                 className="form-input"
+                allowClear
               />
             ) : (
               <Input
@@ -46,13 +44,15 @@ export const FormInput = ({
                 placeholder={placeholder ?? label}
                 className="form-input"
                 value={field.value as string}
+                allowClear
               />
             )}
           </div>
         )}
       />
-
-      {error && <div className="error-message">{error.message}</div>}
+      {errors[name] && (
+        <div className="error-message">{errors[name]?.message}</div>
+      )}
     </div>
   );
 };

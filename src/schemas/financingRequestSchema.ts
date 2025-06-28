@@ -1,10 +1,11 @@
 import * as yup from "yup";
+import { inputFieldLabels } from "../constants/constants";
 
 // Validation schema for financing request form
 export const financingRequestSchema = yup.object({
   firstName: yup
     .string()
-    .label("First Name")
+    .label(inputFieldLabels.firstName)
     .required()
     .min(2, ({ label }) => `${label} must be at least 2 characters`)
     .max(100, ({ label }) => `${label} must not exceed 100 characters`)
@@ -14,7 +15,7 @@ export const financingRequestSchema = yup.object({
     ),
   lastName: yup
     .string()
-    .label("Last Name")
+    .label(inputFieldLabels.lastName)
     .required()
     .min(2, ({ label }) => `${label} must be at least 2 characters`)
     .max(100, ({ label }) => `${label} must not exceed 100 characters`)
@@ -22,9 +23,14 @@ export const financingRequestSchema = yup.object({
       /^[a-zA-Z\s]+$/,
       ({ label }) => `${label} can only contain letters and spaces`
     ),
+  originCountry: yup.string().label(inputFieldLabels.originCountry).required(),
+  currency: yup
+    .string()
+    .label(inputFieldLabels.currency)
+    .length(3, ({ label }) => `${label} must be a 3-letter code`),
   validityStartDate: yup
     .date()
-    .label("Validity Start Date")
+    .label(inputFieldLabels.validityStartDate)
     .required()
     .test(
       "validityStartDate",
@@ -38,12 +44,12 @@ export const financingRequestSchema = yup.object({
     ),
   validityEndDate: yup
     .date()
-    .label("Validity End Date")
+    .label(inputFieldLabels.validityEndDate)
     .required()
     .test(
       "validityEndDate",
       ({ label }) =>
-        `${label} must be between 1 and 3 years after Validity Start Date`,
+        `${label} must be between 1 and 3 years after ${inputFieldLabels.validityEndDate}`,
       (value, ctx) => {
         const { validityStartDate } = ctx.parent;
         if (!value && !validityStartDate) return true;
