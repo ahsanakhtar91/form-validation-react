@@ -3,7 +3,7 @@ import FinancingRequestForm from "./components/FinancingRequestForm/FinancingReq
 
 export default function App() {
   return (
-    <div className="root">
+    <div className="app">
       <FinancingRequestForm />
     </div>
   );
