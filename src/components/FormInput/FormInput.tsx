@@ -23,12 +23,11 @@ export const FormInput = ({
   errors,
 }: FormInputProps) => {
   return (
-    <div>
       <Controller
         name={name}
         control={control}
         render={({ field }) => (
-          <div>
+          <div className="form-input-container">
             <div className="form-input-label">{label}</div>
             {type === "date" ? (
               <DatePicker
@@ -78,12 +77,11 @@ export const FormInput = ({
                 allowClear
               />
             )}
+            {errors[name] && (
+              <div className="error-message">{errors[name]?.message}</div>
+            )}
           </div>
         )}
       />
-      {errors[name] && (
-        <div className="error-message">{errors[name]?.message}</div>
-      )}
-    </div>
   );
 };

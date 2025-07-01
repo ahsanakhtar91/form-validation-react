@@ -24,12 +24,11 @@ export const FormDropdown = ({
   errors,
 }: FormDropdownProps) => {
   return (
-    <div>
       <Controller
         name={name}
         control={control}
         render={({ field }) => (
-          <div>
+          <div className="form-input-container">
             <div className="form-input-label">{label}</div>
             <Select
               {...field}
@@ -41,12 +40,11 @@ export const FormDropdown = ({
               showSearch
               allowClear
             />
+            {errors[name] && (
+              <div className="error-message">{errors[name]?.message}</div>
+            )}
           </div>
         )}
       />
-      {errors[name] && (
-        <div className="error-message">{errors[name]?.message}</div>
-      )}
-    </div>
   );
 };
