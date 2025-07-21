@@ -11,7 +11,6 @@ import { FormInput } from "../FormInput/FormInput";
 import { FormDropdown } from "../FormDropdown/FormDropdown";
 import {
   allCountries,
-  API_ENDPOINT,
   currencies,
   inputFieldLabels,
   opecCountries,
@@ -42,29 +41,13 @@ const FinancingRequestForm: React.FC = () => {
   });
 
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
 
-  const onSubmit = useCallback(
-    async (data: FinancingRequestFormData) => {
-      error && setError("");
-      try {
-        const response = await fetch(API_ENDPOINT, {
-          method: "POST",
-          body: JSON.stringify(data),
-        });
+  const onSubmit = useCallback(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        if (response.status === 200 || response.status === 201) {
-          reset();
-          setSuccess(true);
-        } else {
-          setError("Failed to submit request!");
-        }
-      } catch (e) {
-        setError("Failed to submit request!");
-      }
-    },
-    [reset, error]
-  );
+    reset();
+    setSuccess(true);
+  }, [reset]);
 
   const originCountry = watch("originCountry");
 
@@ -165,7 +148,6 @@ const FinancingRequestForm: React.FC = () => {
           >
             {isSubmitting ? "Submitting..." : "Submit Request"}
           </Button>
-          {error && <div className="error-message">{error}</div>}
         </form>
       )}
     </div>
