@@ -1,6 +1,6 @@
 # 📝 Form Validation (React App)
 
-A modern and responsive form example built with **React**, **TypeScript**, and **Ant Design**. Features comprehensive form validation, real-time error handling with meaningful user feedback, and seamless API integration.
+A sleek and responsive form example built with **React**, **TypeScript**, and **Ant Design**. It includes comprehensive form validation, real-time error handling with meaningful user feedback, and simulates a delayed API call during form submission for realistic behavior.
 
 ⚛️ **Live Demo**: https://form-validation-react-demo.netlify.app
 
@@ -24,10 +24,9 @@ A modern and responsive form example built with **React**, **TypeScript**, and *
   - Tablet: 769px - 1024px
   - Mobile: 768px and below
   - Small Mobile: 480px and below
-- **API Integration**: Submits form data using the `fetch` API with a POST request to this API endpoint:
-   - http://test-noema-api.azurewebsites.net/api/requests
+- **Mock API Call**: Mocks an API call to simulate form submission, displaying a loading state for one second before completing the process.
 - **Error Handling**: Informative error messages are displayed to provide meaningful user feedback.
-- **Success State**: A well-designed `Success` component animates into view when the form is successfully submitted and all validations have passed.
+- **Success State**: A well-designed `Success` component animates into view when the form is successfully submitted (after all validations have passed).
 
 ---
 
